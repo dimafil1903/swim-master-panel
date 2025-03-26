@@ -25,7 +25,6 @@ const LevelForm: React.FC = () => {
   const [cover, setCover] = useState('');
   const [order, setOrder] = useState(1);
   const [uploading, setUploading] = useState(false);
-  const [currentStep, setCurrentStep] = useState(1);
   
   const isEditing = !!levelId;
   const parentProgram = programId ? getProgramById(programId) : 
@@ -133,13 +132,7 @@ const LevelForm: React.FC = () => {
       </Link>
       
       <div className="swim-card p-8">
-        <h2 className="text-xl font-semibold mb-4">{isEditing ? `Edit ${name}` : 'Create New Level'}</h2>
-        
-        <div className="step-indicator">
-          <div className={`step ${currentStep === 1 ? 'active' : 'inactive'}`}>STEP 1</div>
-          <div className={`step ${currentStep === 2 ? 'active' : 'inactive'}`}>STEP 2</div>
-          <div className={`step ${currentStep === 3 ? 'active' : 'inactive'}`}>STEP 3</div>
-        </div>
+        <h2 className="text-xl font-semibold mb-6">{isEditing ? `Edit ${name}` : 'Create New Level'}</h2>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
@@ -212,7 +205,7 @@ const LevelForm: React.FC = () => {
                 Cancel
               </Button>
               <Button type="submit">
-                {isEditing ? 'Update Level' : 'Next'}
+                {isEditing ? 'Update Level' : 'Create Level'}
               </Button>
             </div>
           </div>
