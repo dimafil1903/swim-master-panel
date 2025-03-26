@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./context/AppContext";
 import Layout from "./components/layout/Layout";
 import Dashboard from "./pages/Dashboard";
@@ -17,6 +17,7 @@ import SkillForm from "./pages/skills/SkillForm";
 import ProgressList from "./pages/progress/ProgressList";
 import ProgressForm from "./pages/progress/ProgressForm";
 import NotFound from "./pages/NotFound";
+import Index from "./pages/Index";
 
 const queryClient = new QueryClient();
 
@@ -29,7 +30,8 @@ const App = () => (
         <BrowserRouter>
           <Layout>
             <Routes>
-              <Route path="/" element={<Navigate to="/programs" replace />} />
+              <Route path="/" element={<Index />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/programs" element={<ProgramList />} />
               <Route path="/programs/new" element={<ProgramForm />} />
               <Route path="/programs/edit/:programId" element={<ProgramForm />} />
