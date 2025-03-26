@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const LevelForm: React.FC = () => {
   const { levelId, programId } = useParams<{ levelId: string; programId: string }>();
@@ -24,7 +23,6 @@ const LevelForm: React.FC = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [cover, setCover] = useState('');
-  const [numSkills, setNumSkills] = useState('1');
   const [order, setOrder] = useState(1);
   const [uploading, setUploading] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
@@ -41,7 +39,6 @@ const LevelForm: React.FC = () => {
         setDescription(level.description || '');
         setCover(level.cover || '');
         setOrder(level.order);
-        setNumSkills(level.skills.length.toString());
       } else {
         navigate('/programs');
       }
@@ -195,27 +192,6 @@ const LevelForm: React.FC = () => {
                 </div>
               </div>
             </div>
-            
-            {!isEditing && (
-              <div>
-                <Label htmlFor="numSkills">Number of skills</Label>
-                <Select 
-                  value={numSkills} 
-                  onValueChange={setNumSkills}
-                >
-                  <SelectTrigger className="mt-1">
-                    <SelectValue placeholder="Select number of skills" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                      <SelectItem key={num} value={num.toString()}>
-                        {num}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
           </div>
           
           <div className="flex flex-col space-y-3 pt-4">

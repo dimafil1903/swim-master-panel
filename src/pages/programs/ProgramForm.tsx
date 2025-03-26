@@ -6,7 +6,6 @@ import { ArrowLeft, Upload } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const ProgramForm: React.FC = () => {
   const { programId } = useParams<{ programId: string }>();
@@ -16,7 +15,6 @@ const ProgramForm: React.FC = () => {
   const [name, setName] = useState('');
   const [logo, setLogo] = useState('');
   const [instructors, setInstructors] = useState<string[]>([]);
-  const [numLevels, setNumLevels] = useState('1');
   const [uploading, setUploading] = useState(false);
   
   const isEditing = !!programId;
@@ -28,7 +26,6 @@ const ProgramForm: React.FC = () => {
         setName(program.name);
         setLogo(program.logo || '');
         setInstructors(program.instructors || []);
-        setNumLevels(program.levels.length.toString());
       } else {
         navigate('/programs');
       }
@@ -127,27 +124,6 @@ const ProgramForm: React.FC = () => {
                 required
               />
             </div>
-            
-            {!isEditing && (
-              <div>
-                <Label htmlFor="numLevels">Number of levels</Label>
-                <Select 
-                  value={numLevels} 
-                  onValueChange={setNumLevels}
-                >
-                  <SelectTrigger className="mt-1">
-                    <SelectValue placeholder="Select number of levels" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                      <SelectItem key={num} value={num.toString()}>
-                        {num}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
           </div>
           
           <div className="flex justify-end space-x-4 pt-4">
